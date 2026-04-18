@@ -1,7 +1,7 @@
 body {
   max-width: 900px;
   margin: 0 auto;
-  min-height: 70vh;
+  min-height: 100vh;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -140,4 +140,17 @@ footer {
 #error-message {
   color: #bb1a1a;
   margin-bottom: 10px;
+}
+
+main {
+  flex: 1;
+}
+
+p {
+  margin: 10px 0;
+  text-align: left;
+}
+
+footer p {
+  text-align: center;
 }
