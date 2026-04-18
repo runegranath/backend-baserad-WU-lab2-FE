@@ -10,31 +10,81 @@ async function getJobs() {
   }
 }
 
+const jobForm = document.getElementById("jobForm");
+
+if (jobForm) {
+  jobForm.addEventListener("submit", async (event) => {
+    event.preventDefault(); // Hindrar sidan från att laddas om
+
+    // Samla in datan från formuläret
+    const newJob = {
+      companyname: document.getElementById("companyname").value,
+      jobtitle: document.getElementById("jobtitle").value,
+      location: document.getElementById("location").value,
+      startdate: document.getElementById("startdate").value,
+      enddate: document.getElementById("enddate").value,
+      description: document.getElementById("description").value,
+    };
+
+    // väntar på addJob innan vi gör något annat
+    await addJob(newJob);
+  });
+}
+
 async function addJob(newJob) {
   if (newJob.companyname.length < 2) {
     alert("Företagsnamnet är för kort!");
+    return; // Avbryt funktionen här
+  }
+
+  if (newJob.jobtitle.length < 2) {
+    alert("Jobbtiteln är för kort!");
     return;
   }
-  // valideringar
 
-  // Fetch-anrop
-  const response = await fetch("http://localhost:5000/jobs", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newJob),
-  });
+  if (newJob.location.length < 2) {
+    alert("Platsen är för kort!");
+    return;
+  }
 
-  if (response.ok) {
-    // Gå tillbaka till startsidan eller uppdatera listan
-    window.location.href = "index.html";
+  if (newJob.description.length < 5) {
+    alert("Beskrivningen är för kort!");
+    return;
+  }
+
+  if (!newJob.startdate || !newJob.enddate) {
+    alert("Start- och slutdatum måste finnas!");
+    return;
+  }
+
+  try {
+    // Fetch-anrop
+    const response = await fetch("http://localhost:5000/jobs", {
+      // Skicka data som JSON
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newJob),
+    });
+
+    if (response.ok) {
+      // Gå tillbaka till startsidan eller uppdatera listan
+      window.location.href = "index.html";
+    } else {
+      alert("Något gick fel, kunde inte lägga till jobb...");
+    }
+  } catch (error) {
+    console.error("Kunde inte lägga till jobb:", error);
   }
 }
 
 const myJobs = getJobs();
-console.log(myJobs);
 
 function displayJobs(jobs) {
   const tableBody = document.getElementById("jobBody");
+
+  // Om tabellkroppen inte finns, avbryt
+  if (!tableBody) return;
+
   jobBody.innerHTML = "";
 
   jobs.forEach((job) => {
@@ -58,7 +108,7 @@ function displayJobs(jobs) {
     deleteBtn.className = "delete-btn";
 
     deleteBtn.addEventListener("click", () => {
-      removeJob(job.id);
+      deleteJob(job.id);
     });
 
     // Lägg till knappen i sista cellen
@@ -70,7 +120,7 @@ function displayJobs(jobs) {
 }
 
 async function deleteJob(id) {
-  // Bekräfta radering
+    // Bekräfta radering
   if (confirm("Vill du verkligen radera?")) {
     // Skicka DELETE-förfrågan
     await fetch(`http://localhost:5000/jobs/${id}`, {

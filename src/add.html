@@ -10,37 +10,47 @@
 <body>
     <header>
         <nav>
-            <a href="/index">Startsida</a> - <a href="/">Lägg till kurs</a> - <a href="about">Om</a>
+            <a href="../index.html">Startsida</a> - <a href="./add.html">Lägg till kurs</a> - <a
+                href="./about.html">Om</a>
         </nav>
     </header>
     <main>
         <h1>Lägg till kurs</h1>
+
         <div class="form-container">
-            <ul>
-                </li>
-            </ul>
-            <form action="/submit" method="post">
-                <label for="Kurskod">Kurskod:</label>
-                <input type="text" id="coursecode" name="" value="" />
+
+            <form id="jobForm">
+                <label for="companyname">Företagsnamn:</label>
+                <input type="text" id="companyname" required />
                 <br />
-                <label for="Kursnamn">Kursnamn:</label>
-                <input type="text" id="coursename" name="" value="" required />
+                <label for="jobtitle">Jobbtitel:</label>
+                <input type="text" id="jobtitle" required />
                 <br />
-                <label for="Kursplan">Kursplan:</label>
-                <input type="text" id="syllabus" name="" value="" required />
+                <label for="location">Plats:</label>
+                <input type="text" id="location" required />
                 <br />
-                <label for="Progression">Progression:</label>
-                <input type="text" id="progression" name="" value="" required />
+                <label for="startdate">Startdatum:</label>
+                <input type="date" id="startdate" required />
                 <br />
-                <button type="submit">Skicka</button>
+                <label for="enddate">Slutdatum:</label>
+                <input type="date" id="enddate" required />
+                <br />
+                <label for="description">Beskrivning:</label>
+                <textarea id="description" required></textarea>
+                <br />
+                <button type="submit">Spara jobb</button>
+
             </form>
         </div>
+        <div id="error-message" style="color: red;"></div>
+
     </main>
 
     <footer>
         <p> Lab 2 backend-baserad webbutveckling av Rune Granath</p>
     </footer>
 
+    <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>

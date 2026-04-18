@@ -8,39 +8,30 @@
 </head>
 
 <body>
+  <header>
+    <nav>
+      <a href="/index.html">Startsida</a> - <a href="src/add.html">Lägg till jobb</a> - <a href="src/about.html">Om</a>
+    </nav>
+  </header>
   <div class="table-container">
-    <table id="courseTable">
+    <table id="jobsTable">
       <thead>
         <tr>
-          <th>Kurskod</th>
-          <th>Kursnamn</th>
-          <th>Progression</th>
-          <th>Kursplan</th>
-          <th>Hantera</th>
+          <th>Företagsnamn</th>
+          <th>Jobbtitel</th>
+          <th>Plats</th>
+          <th>Startdatum</th>
+          <th>Slutdatum</th>
+          <th>Beskrivning</th>
+          <th>Radera</th>
         </tr>
       </thead>
-      <tbody id="courseBody">
+      <tbody id="jobBody">
       </tbody>
     </table>
   </div>
 
-  <form id="courseForm">
-    <input type="text" id="courseCode" placeholder="Kurskod" required>
-    <input type="text" id="courseName" placeholder="Kursnamn" required>
-
-    <select id="courseProgression">
-      <option value="A">A</option>
-      <option value="B">B</option>
-      <option value="C">C</option>
-    </select>
-
-    <input type="url" id="courseSyllabus" placeholder="URL till kursplan" required>
-    <button type="submit">Lägg till kurs</button>
-  </form>
-
-  <div id="error-message" style="color: red;"></div>
-
-  <script type="module" src="/src/main.ts"></script>
+  <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>
