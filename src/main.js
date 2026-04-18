@@ -32,28 +32,32 @@ if (jobForm) {
 }
 
 async function addJob(newJob) {
+
+  const errorDiv = document.getElementById("error-message");
+  errorDiv.innerText = "";
+
   if (newJob.companyname.length < 2) {
-    alert("Företagsnamnet är för kort!");
+    errorDiv.innerText = "Företagsnamnet är för kort!";
     return; // Avbryt funktionen här
   }
 
   if (newJob.jobtitle.length < 2) {
-    alert("Jobbtiteln är för kort!");
+    errorDiv.innerText = "Jobbtiteln är för kort!";
     return;
   }
 
   if (newJob.location.length < 2) {
-    alert("Platsen är för kort!");
+    errorDiv.innerText = "Platsen är för kort!";
     return;
   }
 
   if (newJob.description.length < 5) {
-    alert("Beskrivningen är för kort!");
+    errorDiv.innerText = "Beskrivningen är för kort!";
     return;
   }
 
   if (!newJob.startdate || !newJob.enddate) {
-    alert("Start- och slutdatum måste finnas!");
+    errorDiv.innerText = "Start- och slutdatum måste finnas!";
     return;
   }
 
@@ -70,7 +74,7 @@ async function addJob(newJob) {
       // Gå tillbaka till startsidan eller uppdatera listan
       window.location.href = "index.html";
     } else {
-      alert("Något gick fel, kunde inte lägga till jobb...");
+      errorDiv.innerText = "Något gick fel, kunde inte lägga till jobb...";
     }
   } catch (error) {
     console.error("Kunde inte lägga till jobb:", error);
@@ -120,7 +124,7 @@ function displayJobs(jobs) {
 }
 
 async function deleteJob(id) {
-    // Bekräfta radering
+  // Bekräfta radering
   if (confirm("Vill du verkligen radera?")) {
     // Skicka DELETE-förfrågan
     await fetch(`http://localhost:5000/jobs/${id}`, {
