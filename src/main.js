@@ -2,7 +2,7 @@ import "./style.css";
 
 async function getJobs() {
   try {
-    const response = await fetch("http://localhost:5000/jobs");
+    const response = await fetch("https://rg-backend-lab2.onrender.com/jobs");
     const jobs = await response.json();
     displayJobs(jobs);
   } catch (error) {
@@ -63,7 +63,7 @@ async function addJob(newJob) {
 
   try {
     // Fetch-anrop
-    const response = await fetch("http://localhost:5000/jobs", {
+    const response = await fetch("https://rg-backend-lab2.onrender.com/jobs", {
       // Skicka data som JSON
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -127,7 +127,7 @@ async function deleteJob(id) {
   // Bekräfta radering
   if (confirm("Vill du verkligen radera?")) {
     // Skicka DELETE-förfrågan
-    await fetch(`http://localhost:5000/jobs/${id}`, {
+    await fetch(`https://rg-backend-lab2.onrender.com/jobs/${id}`, {
       method: "DELETE",
     });
 
