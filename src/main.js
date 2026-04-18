@@ -32,7 +32,6 @@ if (jobForm) {
 }
 
 async function addJob(newJob) {
-
   const errorDiv = document.getElementById("error-message");
   errorDiv.innerText = "";
 
@@ -58,6 +57,15 @@ async function addJob(newJob) {
 
   if (!newJob.startdate || !newJob.enddate) {
     errorDiv.innerText = "Start- och slutdatum måste finnas!";
+    return;
+  }
+
+  // Validera att startdatum inte är efter slutdatum
+  const start = new Date(newJob.startdate);
+  const end = new Date(newJob.enddate);
+
+  if (start > end) {
+    errorDiv.innerText = "Startdatum kan inte vara efter slutdatum!";
     return;
   }
 

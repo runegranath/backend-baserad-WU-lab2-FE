@@ -4,7 +4,7 @@ Detta repository innehåller Frontend-kod för ett enklare REST API byggt med Ex
 
 ## Live-version
 
-En liveversion av API:et finns tillgänglig på följande URL: [https://](https://backend-baserad-wu-lab2-fe.onrender.com/)
+En liveversion av API:et finns tillgänglig på följande URL: [Frontend](https://backend-baserad-wu-lab2-fe.onrender.com/)
 
 ## Installation och databas
 
